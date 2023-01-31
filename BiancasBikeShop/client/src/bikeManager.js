@@ -1,13 +1,24 @@
 const apiUrl = '/api/bike';
 
 export const getBikes = () => {
-    //add implementation here... 
+    return fetch(apiUrl)
+        .then((res) => res.json())
 }
 
 export const getBikeById = (id) => {
-    //add implementation here... 
+    return fetch(`${apiUrl}/${id}`
+    ).then((res) => {
+        if (res.ok) {
+            return res.json();
+        } else {
+            throw new Error(
+                "An unknown error occured while trying to get post.",
+            );
+        }
+    });
 }
 
 export const getBikesInShopCount = () => {
-    //add implementation here... 
+    return fetch(`${apiUrl}/getCount`)
+        .then(res => res.json())
 }

@@ -1,4 +1,5 @@
-﻿using BiancasBikeShop.Repositories;
+﻿using BiancasBikeShop.Models;
+using BiancasBikeShop.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -19,20 +20,22 @@ namespace BiancasBikeShop.Controllers
             _bikeRepo = bikeRepo;
         }
 
-        // Uncomment this and finish these controller methods...
-        // 
-        // public IActionResult Get()
-        // {
-        //     // add implementation here... 
-        //     return Ok();
-        // }
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(_bikeRepo.GetAllBikes());
+        }
 
-        // 
-        // public IActionResult Get(int id)
-        // {
-        //     //add implementation here... 
-        //     return Ok();
-        // }
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            Bike bike = _bikeRepo.GetBikeById(id);
+            if (bike == null)
+            {
+                return NotFound();
+            }
+            return Ok(bike);
+        }
 
         // 
         // public IActionResult GetBikesInShopCount()
