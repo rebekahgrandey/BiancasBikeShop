@@ -20,5 +20,13 @@ export const getBikeById = (id) => {
 
 export const getBikesInShopCount = () => {
     return fetch(`${apiUrl}/getCount`)
-        .then(res => res.json())
+        .then((res) => {
+            if (res.ok) {
+                return res.json();
+            } else {
+                throw new Error(
+                    "An unknown error occured while trying to get post.",
+                );
+            }
+        });
 }
