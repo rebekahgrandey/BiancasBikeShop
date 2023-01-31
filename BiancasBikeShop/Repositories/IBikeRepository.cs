@@ -7,6 +7,6 @@ namespace BiancasBikeShop.Repositories
     {
         List<Bike> GetAllBikes();
         Bike GetBikeById(int id);
-        int GetBikesInShopCount();
+       int GetBikesInShopCount();
     }
 }
